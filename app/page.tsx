@@ -1,40 +1,46 @@
 const featured = [
   {
     index: '01',
+    title: 'Westlake Tissue Segmentation',
+    kind: 'Applied ML · public companion',
+    href: 'https://github.com/JerryDengdmr/westlake-tissue-segmentation',
+    description:
+      'A production-constrained pathology pipeline where failed ablations led to the real bottleneck: annotation policy.',
+    tags: ['PyTorch', 'Segmentation', 'Data quality', 'Ablations'],
+    metric: '0.9711',
+    metricLabel: 'internal non-empty Dice',
+  },
+  {
+    index: '02',
+    title: 'PPTAgent',
+    kind: 'AI agent · public code',
+    href: 'https://github.com/JerryDengdmr/ppt-agent',
+    description:
+      'A natural-language PowerPoint editor with typed plans, dry-run previews, explicit confirmation, verification, and rollback.',
+    tags: ['Python', 'python-pptx', 'Pydantic', 'Agent evals'],
+    metric: '28/28',
+    metricLabel: 'scripted behavior evals',
+  },
+  {
+    index: '03',
     title: 'StockRadar',
-    kind: 'Production system · case study',
-    href: '#stockradar',
+    kind: 'Backend system · case study',
+    href: 'https://github.com/JerryDengdmr/stock-radar-case-study',
     description:
       'An always-on asynchronous monitoring system that turns 390+ live data streams into ranked, explainable alerts.',
     tags: ['Python 3.14', 'asyncio', 'SQLite', 'LLM APIs'],
     metric: '20m → 4m',
     metricLabel: 'pipeline latency',
   },
-  {
-    index: '02',
-    title: 'Degree Path Planner',
-    kind: 'Planning engine · public code',
-    href: 'https://github.com/JerryDengdmr/umich-degree-path-planner',
-    description:
-      'A constraint-based engine that maps transcripts and real course availability into actionable degree plans.',
-    tags: ['Python', 'Constraint solving', 'Privacy by design', 'REST API'],
-    metric: '7',
-    metricLabel: 'edge-case fixtures',
-  },
-  {
-    index: '03',
-    title: 'Agent Reliability Lab',
-    kind: 'Agent engineering · public code',
-    href: 'https://github.com/JerryDengdmr/agent-reliability-lab',
-    description:
-      'Runnable experiments on deterministic gates, evaluator loops, context budgets, and regression testing for agents.',
-    tags: ['Python', 'Evals', 'Guardrails', 'MCP'],
-    metric: '14/14',
-    metricLabel: 'regression checks',
-  },
 ];
 
 const additionalWork = [
+  {
+    title: 'Degree Path Planner',
+    description: 'A privacy-first engine for transcript parsing, requirement auditing, course scoring, and availability-aware planning.',
+    tech: 'Python · constraints · TypeScript contracts',
+    status: 'Public code',
+  },
   {
     title: 'A-Share Strategy Toolkit',
     description: 'Iterative multi-factor trading strategies built for the JoinQuant research platform.',
@@ -108,7 +114,7 @@ export default function Home() {
             <dl>
               <div><dt>390+</dt><dd>live data streams</dd></div>
               <div><dt>3×</dt><dd>workflow acceleration</dd></div>
-              <div><dt>0.967</dt><dd>held-out segmentation Dice</dd></div>
+              <div><dt>0.9711</dt><dd>internal segmentation Dice</dd></div>
             </dl>
           </div>
         </aside>
@@ -147,39 +153,39 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="case-study" id="stockradar">
+      <section className="case-study" id="westlake">
         <div className="shell case-grid">
           <div className="case-copy">
             <p className="eyebrow light"><span /> Case study 01</p>
-            <h2>Make the expensive step earn its place.</h2>
+            <h2>The model wasn’t the bottleneck. The labels were.</h2>
             <p className="case-lead">
-              StockRadar began as a system that sent every candidate to an LLM.
-              It was slow, costly, and noisy. I redesigned it around a staged
-              funnel: deterministic signals first, sector-rotation scoring next,
-              and model analysis only for the highest-value slice.
+              Seven model-side interventions failed to fix a persistent
+              empty-tile false-positive problem. Instead of adding another model
+              trick, I traced the failure backward through the data pipeline and
+              found a concentrated annotation-policy conflict.
             </p>
             <ul className="case-points">
-              <li><b>Always on</b><span>asyncio service with scheduled jobs, state reconciliation, and launchd deployment</span></li>
-              <li><b>Designed to fail well</b><span>bounded retries, stale-state fallbacks, and manual-record overwrite guards</span></li>
-              <li><b>Measured, not assumed</b><span>1/3/5/10-day forward tracking to evaluate alert quality out of sample</span></li>
+              <li><b>Constrained system</b><span>four data sources, multi-scale tiling, and a two-second deployment target</span></li>
+              <li><b>Failure-specific metrics</b><span>separated non-empty Dice from empty-tile false positives instead of hiding both in one average</span></li>
+              <li><b>Audit upstream</b><span>scanned 12,807 annotations and validated the diagnosis with a controlled retraining run</span></li>
             </ul>
           </div>
-          <div className="system-map" aria-label="StockRadar processing architecture">
+          <div className="system-map" aria-label="Westlake tissue segmentation iteration loop">
             <div className="map-label">SYSTEM / 01</div>
-            <div className="map-node"><span>01</span><b>Live feeds</b><small>market · brokerage · filings</small></div>
+            <div className="map-node"><span>01</span><b>Four data sources</b><small>H&amp;E · IHC · heterogeneous labels</small></div>
             <div className="map-arrow">↓</div>
-            <div className="map-node active"><span>02</span><b>Cheap filter</b><small>rules · ranking · rotation</small></div>
+            <div className="map-node"><span>02</span><b>Source-aware pipeline</b><small>tiling · valid masks · grouped evaluation</small></div>
             <div className="map-arrow">↓</div>
-            <div className="map-node"><span>03</span><b>Model analysis</b><small>top-ranked candidates only</small></div>
+            <div className="map-node"><span>03</span><b>Controlled ablations</b><small>loss · sampling · resolution · capacity</small></div>
             <div className="map-arrow">↓</div>
-            <div className="map-node"><span>04</span><b>Feedback loop</b><small>alerts · tracking · daily recap</small></div>
+            <div className="map-node active"><span>04</span><b>Annotation audit</b><small>failure clusters · human review · retrain</small></div>
           </div>
         </div>
         <div className="shell stats-row">
-          <div><strong>390+</strong><span>streams monitored</span></div>
-          <div><strong>77</strong><span>categories modeled</span></div>
-          <div><strong>~80%</strong><span>pipeline time reduced</span></div>
-          <div><strong>14</strong><span>bot commands</span></div>
+          <div><strong>~74k</strong><span>training tiles</span></div>
+          <div><strong>9</strong><span>controlled iterations</span></div>
+          <div><strong>0.9711</strong><span>internal non-empty Dice</span></div>
+          <div><strong>0.931s</strong><span>end-to-end inference</span></div>
         </div>
       </section>
 
@@ -190,39 +196,39 @@ export default function Home() {
             <h2>The real problem is<br />often upstream.</h2>
           </div>
           <p>
-            Across pathology and enterprise automation, the biggest gains came
-            from correcting data and system boundaries—not adding model complexity.
+            Across agent workflows and always-on monitoring, reliability came
+            from explicit system boundaries—not from trusting a model to do everything.
           </p>
         </div>
         <div className="field-grid">
           <article className="field-card blue-card">
             <span className="field-number">A</span>
-            <p className="field-role">Computational pathology · Westlake University</p>
-            <h3>Found the dataset failure hidden behind the model score.</h3>
+            <p className="field-role">PPT workflow automation · Universal Beijing Resort</p>
+            <h3>Let the model propose. Make software decide.</h3>
             <p>
-              Built a training and audit pipeline across four sources, identified
-              conflicting annotation conventions, and ranked suspicious labels by
-              model–label disagreement for targeted review.
+              Built a natural-language PPT editing agent around typed plans,
+              default dry-runs, confirmation gates, read-back verification,
+              non-target checks, rollback, and structured traces.
             </p>
             <div className="mini-stats">
-              <div><strong>~70k</strong><span>image tiles</span></div>
-              <div><strong>8</strong><span>controlled ablations</span></div>
-              <div><strong>0.967</strong><span>held-out Dice</span></div>
+              <div><strong>28</strong><span>behavior cases</span></div>
+              <div><strong>33→3</strong><span>schema repairs</span></div>
+              <div><strong>7</strong><span>typed tools</span></div>
             </div>
           </article>
           <article className="field-card paper-card">
             <span className="field-number">B</span>
-            <p className="field-role">Workflow automation · Universal Beijing Resort</p>
-            <h3>Stopped editing the picture and reached the real document.</h3>
+            <p className="field-role">Backend monitoring · Independent project</p>
+            <h3>Only spend model tokens where they change the decision.</h3>
             <p>
-              After DOM edits were silently rolled back by PowerPoint Online,
-              traced the save path and used browser-level input to drive the
-              application’s own edit pipeline, with post-write verification.
+              Redesigned an always-on market monitoring service as a staged
+              decision funnel: deterministic signals first, sector ranking next,
+              and model analysis only for the highest-value candidates.
             </p>
             <div className="mini-stats">
-              <div><strong>3×</strong><span>faster updates</span></div>
-              <div><strong>18</strong><span>property tests</span></div>
-              <div><strong>2,600+</strong><span>routes modeled</span></div>
+              <div><strong>390+</strong><span>live streams</span></div>
+              <div><strong>77</strong><span>categories</span></div>
+              <div><strong>~80%</strong><span>time reduced</span></div>
             </div>
           </article>
         </div>
